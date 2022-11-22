@@ -1,0 +1,7 @@
+# Datasource configured separately for prod profile so tests will run on the default profile which has no datasource
+# available. This enables Micronaut Test Resources autoconfiguration and provides a Testcontainer DB.
+datasources:
+  default:
+    url: ${DATABASE_CONNECTION_URL}
+    username: ${DATABASE_CONNECTION_USERNAME}
+    password: ${DATABASE_CONNECTION_PASSWORD}

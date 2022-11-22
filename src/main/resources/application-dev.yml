@@ -1,0 +1,18 @@
+datasources:
+  default:
+    url: jdbc:postgresql://localhost:5432/packlister
+    username: postgres
+    password: Hunter2
+micronaut:
+  security:
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: Y4fPEO0OIZdaps84DIgfTLG8xVA2ByO1e5Ctyl/MIrB+mcyeyEobq0mSc/9ThUroNRp44qY30wHj5/VjG1eTyQ==
+logger:
+  levels:
+    com:
+      mtuomiko:
+        packlister: DEBUG

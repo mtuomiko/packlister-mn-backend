@@ -1,0 +1,51 @@
+datasources:
+  default:
+    db-type: postgres
+    dialect: POSTGRES
+    driverClassName: org.postgresql.Driver
+    schema-generate: NONE # flyway will handle
+jpa:
+  default:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: packlister
+        format_sql: true
+        generate_statistics: true # get an idea of actual statements / batches since Hibernate logs can lie
+        hbm2ddl:
+          auto: none # flyway will handle
+    entity-scan:
+      packages: com.mtuomiko.packlister.dao.entity
+flyway:
+  datasources:
+    default:
+      enabled: true
+      defaultSchema: packlister
+      locations:
+        - classpath:migrations
+micronaut:
+  application:
+    name: packlister
+  security:
+    authentication: bearer
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: ${PACKLISTER_AUTH_JWT_SECRET}
+              base64: true
+              jws-algorithm: HS256
+netty:
+  default:
+    allocator:
+      max-order: 3
+test-resources:
+  containers:
+    postgres:
+      image-name: postgres:14
+logger:
+  levels:
+    org:
+      hibernate:
+        SQL: DEBUG
